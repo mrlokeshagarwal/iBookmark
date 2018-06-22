@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBookmark.UI", "iBookmark.UI\iBookmark.UI.csproj", "{E54FBFF4-2254-41B3-81B2-F716BA4CF466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iBookmark.UI", "iBookmark.UI\iBookmark.UI.csproj", "{E54FBFF4-2254-41B3-81B2-F716BA4CF466}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{7C057F80-FD86-4507-8B9C-84FD5A7F88E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E54FBFF4-2254-41B3-81B2-F716BA4CF466} = {7C057F80-FD86-4507-8B9C-84FD5A7F88E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4AB88D5-5185-4D18-B476-4120401917BB}
