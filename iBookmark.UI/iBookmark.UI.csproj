@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\BookmarkModel.tsx" />
+    <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />
     <TypeScriptCompile Include="ClientApp\components\BookmarkListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\InsertBookmark.tsx" />
