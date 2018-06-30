@@ -20,6 +20,20 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\BookmarkModel.tsx" />
+    <None Remove="ClientApp\components\Bookmark.tsx" />
+    <None Remove="ClientApp\components\BookmarkListing.tsx" />
+    <None Remove="ClientApp\components\InsertBookmark.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\BookmarkModel.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\BookmarkListing.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\InsertBookmark.tsx" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
