@@ -11,13 +11,9 @@ export const BookMarkList = (props: BookmarkProps) => {
 
 export const BookMarkItem = (props: BookMarkObject) => {
     return (<div>
-        <div className="col-md-2">
-            <img className="img-thumbnail" src={props.IconUrl} />
+        <div className="col-sm-12">
+            <img className="img-thumbnail" src={props.IconUrl} />&nbsp;
+            <a href={props.Url} target="_blank">{props.Name}</a>
         </div>
-        <div className="col-md-10">
-            <a href={props.Url} >{props.Name}</a>
-        </div>
-        
-        &nbsp; 
     </div>);
 }

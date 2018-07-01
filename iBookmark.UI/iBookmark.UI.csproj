@@ -25,9 +25,15 @@
     <None Remove="ClientApp\components\Bookmark.tsx" />
     <None Remove="ClientApp\components\BookmarkListing.tsx" />
     <None Remove="ClientApp\components\InsertBookmark.tsx" />
+    <None Remove="ClientApp\JS\ExternalModules.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\iBookmark.VM\iBookmark.VM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\JS\ExternalModules.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />
     <TypeScriptCompile Include="ClientApp\components\BookmarkListing.tsx" />

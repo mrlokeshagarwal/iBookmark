@@ -3,3 +3,14 @@
 ################################################################################
 
 /.vs/iBookmark
+/iBookmar.Repositories/bin/Debug
+/iBookmar.Repositories/obj/Debug
+/iBookmark.API/bin/Debug/netcoreapp2.0
+/iBookmark.API/obj
+/iBookmark.Interfaces/bin/Debug
+/iBookmark.Interfaces/obj/Debug
+/iBookmark.Model/bin/Debug
+/iBookmark.Model/obj/Debug
+/iBookmark.VM/bin/Debug
+/iBookmark.VM/obj/Debug
+/packages/Dapper.1.50.5
