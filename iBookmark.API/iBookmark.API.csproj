@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\iBookmark.Model\iBookmark.Model.csproj" />
+    <ProjectReference Include="..\iBookmark.Model\iBookmark.Domain.csproj" />
   </ItemGroup>
 
 </Project>

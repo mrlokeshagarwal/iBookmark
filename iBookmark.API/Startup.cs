@@ -40,6 +40,7 @@ namespace iBookmark.API
                 var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "iBookmark.API.xml");
                 c.IncludeXmlComments(filePath);
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +52,7 @@ namespace iBookmark.API
             }
 
             app.UseMvc();
-
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

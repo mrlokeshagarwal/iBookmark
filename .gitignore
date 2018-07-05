@@ -14,3 +14,6 @@
 /iBookmark.VM/bin/Debug
 /iBookmark.VM/obj/Debug
 /packages/Dapper.1.50.5
+/iBookmark.Helper/bin/Debug
+/iBookmark.Helper/obj/Debug
+/packages

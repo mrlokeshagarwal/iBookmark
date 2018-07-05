@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using iBookmark.Model;
-
-namespace iBookmark.API.Controllers
+﻿namespace iBookmark.API.Controllers
 {
-    [Route("api/[controller]")]
+    using iBookmark.Domain.AggregatesModel.BookmarkAggregate;
+    using Microsoft.AspNetCore.Mvc;
+
+    [Route("Bookmarks")]
     public class BookmarksController : Controller
     {
         /// <summary>
@@ -16,7 +12,7 @@ namespace iBookmark.API.Controllers
         /// <param name="userId"></param>
         /// <param name="folderId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("{userId:int/folderId:int?}")]
         [ProducesResponseType( typeof(BookmarkModel),200)]
         [ProducesResponseType(204)]
         public IActionResult GetBookmark(int userId, int? folderId)
