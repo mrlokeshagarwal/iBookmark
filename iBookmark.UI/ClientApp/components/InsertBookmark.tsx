@@ -1,10 +1,8 @@
 ﻿import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
 import 'jquery';
-import { InsertBookmarkProps, InsertBookmarkState, BookMarkObject, ExternalReferenceObject } from '../Models/BookmarkModel';
+import { InsertBookmarkProps, InsertBookmarkState, BookMarkObject } from '../Models/BookmarkModel';
 import 'isomorphic-fetch';
-import { MetaTags } from '../JS/ExternalModules';
-import { KeyboardEvent } from 'react';
+import { GetMetaData } from '../JS/ExternalModules';
 
 export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertBookmarkState> {
     constructor() {
@@ -31,12 +29,10 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
     }
 
     GetMetaData = () => {
-        let name: string = "";
-        let tags: MetaTags = new MetaTags(this.state.Url);
-        tags.getMetaData()
+        GetMetaData(this.state.Url)
             .then(data => {
                 let b: BookMarkObject = {
-                    Url: this.state.Url, Name: data.meta.title, IconUrl: data.meta.favicon //IconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url
+                    Url: this.state.Url, Name: data.meta.title, IconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url
                 };
                 this.props.onClickFunction(b);
                 this.setState({ Url: '' });

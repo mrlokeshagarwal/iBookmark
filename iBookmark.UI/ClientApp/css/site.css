@@ -64,3 +64,15 @@
         text-overflow: ellipsis;
     }
 }
+
+.bookmarklist{
+    margin-bottom: 5px;
+}
+.Container {
+    background-color: grey;
+    color: white;
+    height: 80vh !important;
+}
+body {
+    height: 100vh !important;
+}

@@ -9,9 +9,11 @@
     "skipDefaultLibCheck": true,
     "strict": true,
     "types": [ "webpack-env" ],
-    "pa"
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "removeComments": true
   },
-  ""
   "exclude": [
       "bin",
       "node_modules"

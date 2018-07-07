@@ -24,8 +24,11 @@
     <None Remove="ClientApp\BookmarkModel.tsx" />
     <None Remove="ClientApp\components\Bookmark.tsx" />
     <None Remove="ClientApp\components\BookmarkListing.tsx" />
+    <None Remove="ClientApp\components\Container\ContainerListing.tsx" />
+    <None Remove="ClientApp\components\Container\InsertContainer.tsx" />
     <None Remove="ClientApp\components\InsertBookmark.tsx" />
     <None Remove="ClientApp\JS\ExternalModules.ts" />
+    <None Remove="ClientApp\Models\ContainerModel.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,11 +36,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\Container\ContainerListing.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Container\InsertContainer.tsx" />
     <TypeScriptCompile Include="ClientApp\JS\ExternalModules.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />
     <TypeScriptCompile Include="ClientApp\components\BookmarkListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\InsertBookmark.tsx" />
+    <TypeScriptCompile Include="ClientApp\Models\ContainerModel.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

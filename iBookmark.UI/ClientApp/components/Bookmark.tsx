@@ -1,21 +1,29 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { InsertBookmark } from './InsertBookmark';
-import { BookmarkProps, BookMarkObject } from '../Models/BookmarkModel';
+import { BookMarkObject, AppProps } from '../Models/BookmarkModel';
 import { BookMarkList } from './BookmarkListing';
+import { InsertContainer } from './Container/InsertContainer';
+import { ContainerList } from './Container/ContainerListing';
+import { ContainerObject } from '../Models/ContainerModel';
 
-export class Bookmark extends React.Component<RouteComponentProps<{}>, BookmarkProps>{
+export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>{
     constructor() {
         super();
-        this.state = { bookmarks: [] };
+        this.state = { bookmarks: [], containers: [] };
     }
 
     render() {
         return <div>
-            <div className="col-md-4">
-                Folders will be here
+            <div className="col-md-2 Container">
+                <div className="row">
+                    <InsertContainer onClickfunction={this.AddContainer} />
+                </div>
+                <div className="row">
+                    <ContainerList Containers={this.state.containers} />
+                </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-10">
                 <div className="row">
                     <InsertBookmark onClickFunction={this.AddBookmark} />
                 </div>
@@ -27,8 +35,9 @@ export class Bookmark extends React.Component<RouteComponentProps<{}>, BookmarkP
         </div>
     }
     AddBookmark = (a: BookMarkObject) => {
-        var newArray = this.state.bookmarks.slice();
-        newArray.push(a);
-        this.setState({ bookmarks: newArray })
+        this.setState((prevState, props) => ({ bookmarks: prevState.bookmarks.concat(a) } ));
+    };
+    AddContainer = (a: ContainerObject) => {
+        this.setState((prevState, props) => ({ containers: prevState.containers.concat(a) }));
     };
 }

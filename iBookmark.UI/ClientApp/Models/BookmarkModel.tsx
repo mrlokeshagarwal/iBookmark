@@ -1,5 +1,11 @@
-﻿export interface BookmarkProps {
-    bookmarks: BookMarkObject[]
+﻿import { ContainerObject } from "./ContainerModel";
+export interface AppProps {
+    bookmarks: BookMarkObject[],
+    containers: ContainerObject[]
+}
+
+export interface BookmarkProps {
+    bookmarks: BookMarkObject[],
 }
 
 export interface BookMarkObject {
