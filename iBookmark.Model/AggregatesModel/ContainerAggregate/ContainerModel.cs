@@ -1,16 +1,17 @@
-﻿namespace iBookmark.Model.AggregatesModel.ContainerAggregate
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace iBookmark.Model.AggregatesModel.ContainerAggregate
 {
     public class ContainerModel
     {
-        private string _containerName;
-
         public int ContainerId { get; set; }
 
+        [Required]
         public string ContainerName { get; set; }
 
-        public void Add(string containerName)
-        {
-            _containerName = containerName;
-        }
+        [Required]
+        public int UserId { get; set; }
+
+        public bool IsDefault { get; set; }
     }
 }

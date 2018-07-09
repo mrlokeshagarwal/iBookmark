@@ -1,7 +1,8 @@
 ﻿import { ContainerObject } from "./ContainerModel";
 export interface AppProps {
     bookmarks: BookMarkObject[],
-    containers: ContainerObject[]
+    containers: ContainerObject[],
+    selectedContainerId: number
 }
 
 export interface BookmarkProps {
@@ -9,6 +10,7 @@ export interface BookmarkProps {
 }
 
 export interface BookMarkObject {
+    BookmarkId: number,
     IconUrl: string,
     Url: string,
     Name: string

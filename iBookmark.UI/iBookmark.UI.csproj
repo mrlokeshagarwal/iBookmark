@@ -27,6 +27,7 @@
     <None Remove="ClientApp\components\Container\ContainerListing.tsx" />
     <None Remove="ClientApp\components\Container\InsertContainer.tsx" />
     <None Remove="ClientApp\components\InsertBookmark.tsx" />
+    <None Remove="ClientApp\JS\Container.ts" />
     <None Remove="ClientApp\JS\ExternalModules.ts" />
     <None Remove="ClientApp\Models\ContainerModel.ts" />
   </ItemGroup>
@@ -38,6 +39,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\Container\ContainerListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Container\InsertContainer.tsx" />
+    <TypeScriptCompile Include="ClientApp\JS\Container.ts" />
     <TypeScriptCompile Include="ClientApp\JS\ExternalModules.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />

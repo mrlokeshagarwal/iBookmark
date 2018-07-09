@@ -1,13 +1,17 @@
 ﻿export interface ContainerProps {
-    Containers: ContainerObject[]
+    Containers: ContainerObject[],
+    onContainerSelected: (containerId: number) => void
 }
 
 export interface ContainerObject {
-    ContainerName: string
+    containerId: number,
+    containerName: string,
+    isDefault: boolean
+    onContainerSelected: (containerId: number) => void
 }
 
 export interface InsertContainerState {
-    ContainerName: string
+    containerName: string
 }
 
 export interface InsertContainerProps {

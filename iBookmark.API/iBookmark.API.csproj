@@ -13,8 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Polly" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.5.0" />
   </ItemGroup>
 
@@ -23,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\iBookmar.Repositories\iBookmark.Infrastructure.csproj" />
+    <ProjectReference Include="..\iBookmark.Helper\iBookmark.Helper.csproj" />
     <ProjectReference Include="..\iBookmark.Model\iBookmark.Domain.csproj" />
   </ItemGroup>
 

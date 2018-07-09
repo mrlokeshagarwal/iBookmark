@@ -12,7 +12,7 @@
         /// <param name="userId"></param>
         /// <param name="folderId"></param>
         /// <returns></returns>
-        [HttpGet("{userId:int/folderId:int?}")]
+        [HttpGet("{userId}/{folderId}")]
         [ProducesResponseType( typeof(BookmarkModel),200)]
         [ProducesResponseType(204)]
         public IActionResult GetBookmark(int userId, int? folderId)

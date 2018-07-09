@@ -5,7 +5,7 @@ using System.Net.Http;
 using Polly;
 using Polly.Timeout;
 
-namespace iBookmark.Infrastructure.Helpers
+namespace iBookmark.Helpers.Network
 {
     public static class PollyPolicyHelper
     {

@@ -11,7 +11,7 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
     }
 
     render() {
-        return (<div className="form-group">
+        return (<div className="form-group padding-10px">
             <form onSubmit={this.submitHandler}>
                 <div className="col-md-8">
                     <input type="url" className="form-control input-sm" placeholder="Enter URL" value={this.state.Url} onChange={(event) => { this.setState({ Url: event.target.value }) }} required />&nbsp;
@@ -32,7 +32,7 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
         GetMetaData(this.state.Url)
             .then(data => {
                 let b: BookMarkObject = {
-                    Url: this.state.Url, Name: data.meta.title, IconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url
+                    Url: this.state.Url, Name: data.meta.title, IconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url, BookmarkId: -1
                 };
                 this.props.onClickFunction(b);
                 this.setState({ Url: '' });

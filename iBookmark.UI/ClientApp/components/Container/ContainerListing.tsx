@@ -3,14 +3,20 @@ import { ContainerProps as CP, ContainerObject } from "../../Models/ContainerMod
 
 export const ContainerList = (props: CP) => {
     return (
-        < div className="Container">
-            {props.Containers.map(m => <ContainerItem {...m} />)}
+        <div className="Container">
+            <ul className="nav nav-pills nav-stacked" role="tablist">
+                {props.Containers.map(m => <ContainerItem key={m.containerId} {...m} onContainerSelected={props.onContainerSelected} />)}
+            </ul>
         </div>
     )
 };
 
 export const ContainerItem = (props: ContainerObject) => {
-    return (<div className="col-sm-12">
-        {props.ContainerName}
-    </div>)
+    const ClickHandler = () => {
+        props.onContainerSelected(props.containerId);
+}
+    return (<li className="active"><a href="javascript:void(0);" data-value={props.containerId} onClick={ClickHandler}>
+        {props.containerName}
+    </a></li>)
 };
+

@@ -4,7 +4,7 @@ import * as React from "react";
 export const BookMarkList = (props: BookmarkProps) => {
     return (
         <div>
-            {props.bookmarks.map(bookmark => <BookMarkItem key={bookmark.Name} {...bookmark} />)}
+            {props.bookmarks.map(bookmark => <BookMarkItem key={bookmark.BookmarkId} {...bookmark} />)}
         </div>
     );
 }

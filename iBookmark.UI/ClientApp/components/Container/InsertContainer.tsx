@@ -4,14 +4,14 @@ import { InsertContainerProps, InsertContainerState, ContainerObject } from "../
 export class InsertContainer extends React.Component<InsertContainerProps, InsertContainerState>{
     constructor() {
         super();
-        this.state = { ContainerName: "" };
+        this.state = { containerName: "" };
     }
     render() {
         return (
             <div className="form-group">
                 <form onSubmit={this.submitHandler}>
-                    <div className="col-md-12">
-                        <input type="text" maxLength={20} className="form-control input-sm" placeholder="Enter Name" value={this.state.ContainerName} onChange={(event) => { this.setState({ ContainerName: event.target.value }) }} required />&nbsp;
+                    <div className="col-md-12 padding-10px">
+                        <input type="text" maxLength={20} className="form-control input-sm" placeholder="Create New Container" value={this.state.containerName} onChange={(event) => { this.setState({ containerName: event.target.value }) }} required />&nbsp;
                 </div>
                 </form>
             </div>
@@ -21,8 +21,10 @@ export class InsertContainer extends React.Component<InsertContainerProps, Inser
 
     submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        let container: ContainerObject = { ContainerName: this.state.ContainerName };
+        let container: ContainerObject = { containerName: this.state.containerName, onContainerSelected: this.showContainer, containerId: -1, isDefault: false };
         this.props.onClickfunction(container);
-        this.setState({ ContainerName: '' });
+        this.setState({ containerName: '' });
     };
+
+    showContainer = (containerId: number) => console.log(containerId);
 }
