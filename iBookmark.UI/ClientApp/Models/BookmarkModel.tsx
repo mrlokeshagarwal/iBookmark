@@ -10,10 +10,11 @@ export interface BookmarkProps {
 }
 
 export interface BookMarkObject {
-    BookmarkId: number,
-    IconUrl: string,
-    Url: string,
-    Name: string
+    bookmarkId: number,
+    containerId: number,
+    bookmarkIconUrl: string,
+    bookmarkUrl: string,
+    bookmarkTitle: string
 }
 
 export interface InsertBookmarkProps {

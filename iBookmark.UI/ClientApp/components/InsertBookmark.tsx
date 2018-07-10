@@ -23,7 +23,7 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
         </div>);
     }
 
-    submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    submitHandler = (event: React.FormEvent<HTMLFormElement>) => {        
         event.preventDefault();
         this.GetMetaData();
     }
@@ -32,7 +32,7 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
         GetMetaData(this.state.Url)
             .then(data => {
                 let b: BookMarkObject = {
-                    Url: this.state.Url, Name: data.meta.title, IconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url, BookmarkId: -1
+                    bookmarkUrl: this.state.Url, bookmarkTitle: data.meta.title, bookmarkIconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url, bookmarkId: -1, containerId: -1
                 };
                 this.props.onClickFunction(b);
                 this.setState({ Url: '' });

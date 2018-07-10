@@ -1,10 +1,10 @@
 ﻿import { ContainerObject } from "../Models/ContainerModel";
 
 
-export class Container {
+export class ContainerLogic {
     baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('data-APIUrl')!;
     GetContainers = (userId: number) => {
-        return fetch(this.baseUrl + "container/" + userId).
+        return fetch(this.baseUrl + "containers/" + userId).
             then(
                 response => response.json() as Promise<ContainerObject[]>
         )

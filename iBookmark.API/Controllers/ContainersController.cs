@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace iBookmark.API.Controllers
 {
     [Produces("application/json")]
-    [Route("container")]
-    public class ContainerController : Controller
+    [Route("containers")]
+    public class ContainersController : Controller
     {
         private IContainerRepository _containerRepository;
 
-        public ContainerController(IContainerRepository containerRepository)
+        public ContainersController(IContainerRepository containerRepository)
         {
             _containerRepository = containerRepository;
         }

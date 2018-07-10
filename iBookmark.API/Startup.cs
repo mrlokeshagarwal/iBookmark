@@ -20,6 +20,8 @@ using iBookmark.Helpers.Network;
 using iBookmark.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using iBookmark.Domain.AggregatesModel.BookmarkAggregate;
+using iBookmark.Infrastructure.Repositories;
 
 namespace iBookmark.API
 {
@@ -62,6 +64,16 @@ namespace iBookmark.API
                         con.Open();
                         return con;
                     }
+                )
+            );
+
+            services.AddSingleton<IBookmarkRepository>(
+                repo => new BookmarkSqlRepository(() =>
+                {
+                    var con = new PollySqlConnection(connectionString, databaseAsyncPolicies, databaseSyncPolicies);
+                    con.Open();
+                    return con;
+                }
                 )
             );
             if (HostingEnvironment.IsDevelopment())
