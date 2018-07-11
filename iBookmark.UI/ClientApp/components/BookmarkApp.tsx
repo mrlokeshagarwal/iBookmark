@@ -1,15 +1,17 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { InsertBookmark } from './InsertBookmark';
-import { BookMarkObject, AppProps } from '../Models/BookmarkModel';
-import { BookMarkList } from './BookmarkListing';
+import { InsertBookmark } from './Bookmark/InsertBookmark';
+import { BookMarkObject} from '../Models/BookmarkModel';
+import { BookMarkList } from './Bookmark/BookmarkListing';
 import { InsertContainer } from './Container/InsertContainer';
 import { ContainerList } from './Container/ContainerListing';
 import { ContainerObject } from '../Models/ContainerModel';
 import { ContainerLogic } from '../JS/ContainerLogic';
 import { BookmarkLogic } from '../JS/BookmarkLogic';
+import { AppProps } from '../Models/AppModel';
+
 let userId: number = 2;
-export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>{
+export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppProps>{
     constructor() {
         super();
         this.state = { bookmarks: [], containers: [], selectedContainerId: -1 };
@@ -20,7 +22,7 @@ export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>
         return <div>
             <div className="col-md-2 Container">
                 <div className="row">
-                    <InsertContainer onClickfunction={this.AddContainer} />
+                    <InsertContainer onClickfunction={this.AddContainer}/>
                 </div>
                 <div className="row">
                     <ContainerList Containers={this.state.containers} onContainerSelected={this.SelectContainer} />
@@ -28,7 +30,7 @@ export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>
             </div>
             <div className="col-md-10">
                 <div className="row">
-                    <InsertBookmark onClickFunction={this.AddBookmark} />
+                    <InsertBookmark onClickFunction={this.AddBookmark} SelectedContainerId={this.state.selectedContainerId} />
                 </div>
                 <div className="row">
                     <BookMarkList bookmarks={this.state.bookmarks} />
@@ -38,9 +40,7 @@ export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>
         </div>
     }
     AddBookmark = (a: BookMarkObject) => {
-        console.log("Inserting Bookmark test");
         let bookmark = new BookmarkLogic();
-        a.containerId = this.state.selectedContainerId;
         bookmark.InsertBookmark(a, userId).then(data => {
             a.bookmarkId = data;
             this.setState((prevState, props) => ({ bookmarks: prevState.bookmarks.concat(a) }));
@@ -66,7 +66,7 @@ export class Bookmark extends React.Component<RouteComponentProps<{}>, AppProps>
         let bookmarkLogic = new BookmarkLogic();
         bookmarkLogic.GetBookmarks(userId, this.state.selectedContainerId).then(data => {
             this.setState({ bookmarks: data });
-        })
+        }).catch(err => console.log(err));
     }
     LoadContainer = () => {
         let container = new ContainerLogic();

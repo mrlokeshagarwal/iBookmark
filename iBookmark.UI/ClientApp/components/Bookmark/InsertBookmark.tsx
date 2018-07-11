@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import 'jquery';
-import { InsertBookmarkProps, InsertBookmarkState, BookMarkObject } from '../Models/BookmarkModel';
 import 'isomorphic-fetch';
-import { GetMetaData } from '../JS/ExternalModules';
+import { InsertBookmarkProps, InsertBookmarkState, BookMarkObject } from '../../Models/BookmarkModel';
+import { GetMetaData } from '../../JS/ExternalModules';
 
 export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertBookmarkState> {
     constructor() {
@@ -32,7 +32,7 @@ export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertB
         GetMetaData(this.state.Url)
             .then(data => {
                 let b: BookMarkObject = {
-                    bookmarkUrl: this.state.Url, bookmarkTitle: data.meta.title, bookmarkIconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url, bookmarkId: -1, containerId: -1
+                    bookmarkUrl: this.state.Url, bookmarkTitle: data.meta.title, bookmarkIconUrl: "https://www.google.com/s2/favicons?domain=" + this.state.Url, bookmarkId: -1, containerId: this.props.SelectedContainerId
                 };
                 this.props.onClickFunction(b);
                 this.setState({ Url: '' });

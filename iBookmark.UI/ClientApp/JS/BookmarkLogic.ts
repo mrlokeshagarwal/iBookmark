@@ -4,9 +4,13 @@ export class BookmarkLogic {
     baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('data-APIUrl')!;
     GetBookmarks = (userId: number, containerId: number) => {
         return fetch(this.baseUrl + "bookmarks/" + userId + "/" + containerId).
-            then(
-                response => response.json() as Promise<BookMarkObject[]>
-            )
+            then(response => {
+                if (response.ok || response.status == 404) {
+                    return response.json() as Promise<BookMarkObject[]>;
+                } else {
+                    throw response;
+                }
+            });
     }
     InsertBookmark = (bookmark: BookMarkObject, userId: number) => {
         return fetch(this.baseUrl + "bookmarks", {

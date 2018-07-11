@@ -1,4 +1,4 @@
-﻿import { BookmarkProps, BookMarkObject } from "../Models/BookmarkModel";
+﻿import { BookmarkProps, BookMarkObject } from "../../Models/BookmarkModel";
 import * as React from "react";
 
 export const BookMarkList = (props: BookmarkProps) => {

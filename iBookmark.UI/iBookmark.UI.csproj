@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\BookmarkModel.tsx" />
-    <None Remove="ClientApp\components\Bookmark.tsx" />
+    <None Remove="ClientApp\components\BookmarkApp.tsx" />
     <None Remove="ClientApp\components\BookmarkListing.tsx" />
     <None Remove="ClientApp\components\Container\ContainerListing.tsx" />
     <None Remove="ClientApp\components\Container\InsertContainer.tsx" />
@@ -30,6 +30,7 @@
     <None Remove="ClientApp\JS\BookmarkLogic.ts" />
     <None Remove="ClientApp\JS\ContainerLogic.ts" />
     <None Remove="ClientApp\JS\ExternalModules.ts" />
+    <None Remove="ClientApp\Models\AppModel.ts" />
     <None Remove="ClientApp\Models\ContainerModel.ts" />
   </ItemGroup>
 
@@ -43,10 +44,11 @@
     <TypeScriptCompile Include="ClientApp\JS\BookmarkLogic.ts" />
     <TypeScriptCompile Include="ClientApp\JS\ContainerLogic.ts" />
     <TypeScriptCompile Include="ClientApp\JS\ExternalModules.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\AppModel.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\Bookmark.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\BookmarkListing.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\InsertBookmark.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\BookmarkApp.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Bookmark\BookmarkListing.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Bookmark\InsertBookmark.tsx" />
     <TypeScriptCompile Include="ClientApp\Models\ContainerModel.ts" />
   </ItemGroup>
 

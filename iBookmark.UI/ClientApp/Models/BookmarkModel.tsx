@@ -1,11 +1,4 @@
-﻿import { ContainerObject } from "./ContainerModel";
-export interface AppProps {
-    bookmarks: BookMarkObject[],
-    containers: ContainerObject[],
-    selectedContainerId: number
-}
-
-export interface BookmarkProps {
+﻿export interface BookmarkProps {
     bookmarks: BookMarkObject[],
 }
 
@@ -18,14 +11,10 @@ export interface BookMarkObject {
 }
 
 export interface InsertBookmarkProps {
-    onClickFunction: (bookmark: BookMarkObject) => void
+    onClickFunction: (bookmark: BookMarkObject) => void,
+    SelectedContainerId: number
 }
 
 export interface InsertBookmarkState {
     Url: string
-}
-
-export interface ExternalReferenceObject {
-    meta: [{ title: string }],
-    result: [{ status: string }]
 }

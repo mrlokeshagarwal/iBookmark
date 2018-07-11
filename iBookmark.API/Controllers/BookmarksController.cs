@@ -22,14 +22,14 @@
         /// <returns></returns>
         [HttpGet("{userId}/{containerId}")]
         [ProducesResponseType(typeof(BookmarkModel), 200)]
-        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookmarkAsync(int userId, int containerId)
         {
             var bookmarks = await this._bookmarkRepository.GetBookmarksAsync(userId, containerId).ConfigureAwait(false);
             if (bookmarks.Any())
                 return new ObjectResult(bookmarks);
             else
-                return NoContent();
+                return new ObjectResult(new List<BookmarkModel>());
         }
 
         /// <summary>
