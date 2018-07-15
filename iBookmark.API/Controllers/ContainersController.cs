@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using iBookmark.Model.AggregatesModel.ContainerAggregate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace iBookmark.API.Controllers
 {
-    [Produces("application/json")]
+    [Authorize(Policy = "AddContainer")]
     [Route("containers")]
     public class ContainersController : Controller
     {

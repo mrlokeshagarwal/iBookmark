@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatesModel\UserAggregate\IUserRepository.cs" />
+    <Compile Include="AggregatesModel\UserAggregate\LoginModel.cs" />
+    <Compile Include="AggregatesModel\UserAggregate\UserModel.cs" />
     <Compile Include="AggregatesModel\BookmarkAggregate\BookmarkModel.cs" />
     <Compile Include="AggregatesModel\ContainerAggregate\IContainerRepository.cs" />
     <Compile Include="AggregatesModel\Entity.cs" />
     <Compile Include="AggregatesModel\IAggregateRoot.cs" />
     <Compile Include="AggregatesModel\BookmarkAggregate\IBookmarkRepository.cs" />
     <Compile Include="AggregatesModel\ContainerAggregate\ContainerModel.cs" />
+    <Compile Include="AggregatesModel\UserAggregate\UserRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

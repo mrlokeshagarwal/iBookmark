@@ -13,8 +13,8 @@
     public class BookmarkSqlRepository : IBookmarkRepository
     {
         #region SP list
-        private const string InsertUpdateBookmarkProc = "[DBO].[sp_InsertUpdateBookmark]";
-        private const string GetBookmarksProc = "[dbo].[sp_GetBookmark]";
+        private const string InsertUpdateBookmarkProc = "[BOOKMARK].[sp_InsertUpdateBookmark]";
+        private const string GetBookmarksProc = "[BOOKMARK].[sp_GetBookmark]";
         #endregion
         private Func<IDbConnection> _dbConnection;
         public BookmarkSqlRepository(Func<IDbConnection> dbConnection)

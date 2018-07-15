@@ -12,8 +12,8 @@
     public class ContainerSqlRepository : IContainerRepository
     {
         #region SP list
-        private const string InsertUpdateContainerProc = "[DBO].[sp_InsertUpdateContainer]";
-        private const string GetContainersProc = "[dbo].[sp_GetContainer]";
+        private const string InsertUpdateContainerProc = "[BOOKMARK].[sp_InsertUpdateContainer]";
+        private const string GetContainersProc = "[BOOKMARK].[sp_GetContainer]";
         #endregion
         private Func<IDbConnection> _dbConnection;
         public ContainerSqlRepository(Func<IDbConnection> dbConnection)

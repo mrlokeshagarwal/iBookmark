@@ -61,9 +61,12 @@
     <Compile Include="Network\PollyHttpClient.cs" />
     <Compile Include="Network\PollyPolicyHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\IEncryptorDecryptor.cs" />
+    <Compile Include="Security\RijndaelManagedEncryptorDecryptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

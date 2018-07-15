@@ -5,7 +5,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.AspNetCore.Authorization;
 
+    //[Authorize(Policy = "AddBookmark")]
     [Route("Bookmarks")]
     public class BookmarksController : Controller
     {
