@@ -21,7 +21,7 @@ export class InsertContainer extends React.Component<InsertContainerProps, Inser
 
     submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        let container: ContainerObject = { containerName: this.state.containerName, onContainerSelected: this.showContainer, containerId: -1, isDefault: false };
+        let container: ContainerObject = { containerName: this.state.containerName, onContainerSelected: this.showContainer, containerId: -1, isDefault: false, IsActive:false };
         this.props.onClickfunction(container);
         this.setState({ containerName: '' });
     };

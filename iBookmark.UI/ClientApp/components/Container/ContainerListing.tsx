@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import { ContainerProps as CP, ContainerObject } from "../../Models/ContainerModel";
+import { ContainerProps as CP, ContainerObject, ContainerItemState } from "../../Models/ContainerModel";
 
 export const ContainerList = (props: CP) => {
     return (
@@ -11,12 +11,25 @@ export const ContainerList = (props: CP) => {
     )
 };
 
-export const ContainerItem = (props: ContainerObject) => {
-    const ClickHandler = () => {
-        props.onContainerSelected(props.containerId);
+export class ContainerItem extends React.Component<ContainerObject, ContainerItemState>{
+    constructor() {
+        super();
+        this.state = { IsActive: false }
+    }
+    render() {
+        return (<li className={this.props.IsActive ? "active" : "Container-inactive" }><a href="javascript:void(0);" data-value={this.props.containerId} onClick={this.ClickHandler}>
+        {this.props.containerName}
+        </a></li>)
+    }
+    ClickHandler = () => {
+        this.setState({ IsActive: true});
+        this.props.onContainerSelected(this.props.containerId);
+    }
 }
-    return (<li className="active"><a href="javascript:void(0);" data-value={props.containerId} onClick={ClickHandler}>
-        {props.containerName}
-    </a></li>)
-};
+//export const ContainerItem = (props: ContainerObject) => {
+
+//    return (<li><a href="javascript:void(0);" data-value={props.containerId} onClick={ClickHandler}>
+//        {props.containerName}
+//    </a></li>)
+//};
 

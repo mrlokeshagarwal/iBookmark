@@ -22,16 +22,24 @@
 
   <ItemGroup>
     <None Remove="ClientApp\BookmarkModel.tsx" />
+    <None Remove="ClientApp\components\Authentication\Login.tsx" />
+    <None Remove="ClientApp\components\Authentication\Signup.tsx" />
     <None Remove="ClientApp\components\BookmarkApp.tsx" />
     <None Remove="ClientApp\components\BookmarkListing.tsx" />
     <None Remove="ClientApp\components\Container\ContainerListing.tsx" />
     <None Remove="ClientApp\components\Container\InsertContainer.tsx" />
+    <None Remove="ClientApp\components\Helpers\TextboxGroup.tsx" />
     <None Remove="ClientApp\components\InsertBookmark.tsx" />
-    <None Remove="ClientApp\JS\BookmarkLogic.ts" />
-    <None Remove="ClientApp\JS\ContainerLogic.ts" />
-    <None Remove="ClientApp\JS\ExternalModules.ts" />
+    <None Remove="ClientApp\Models\BookmarkModel.ts" />
+    <None Remove="ClientApp\Models\GeneralModel.ts" />
+    <None Remove="ClientApp\Models\LoginModel.ts" />
+    <None Remove="ClientApp\Services\Bookmark.Service.ts" />
+    <None Remove="ClientApp\Services\Container.Service.ts" />
+    <None Remove="ClientApp\Services\External.Service.ts" />
     <None Remove="ClientApp\Models\AppModel.ts" />
     <None Remove="ClientApp\Models\ContainerModel.ts" />
+    <None Remove="ClientApp\Shared\Validations\LoginValidations.ts" />
+    <None Remove="ClientApp\Shared\Validations\SignupValidations.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,17 +47,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\Authentication\Login.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Authentication\Signup.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Container\ContainerListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Container\InsertContainer.tsx" />
-    <TypeScriptCompile Include="ClientApp\JS\BookmarkLogic.ts" />
-    <TypeScriptCompile Include="ClientApp\JS\ContainerLogic.ts" />
-    <TypeScriptCompile Include="ClientApp\JS\ExternalModules.ts" />
+    <TypeScriptCompile Include="ClientApp\components\Helpers\TextboxGroup.tsx" />
+    <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\GeneralModel.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\LoginModel.ts" />
+    <TypeScriptCompile Include="ClientApp\Services\Bookmark.Service.ts" />
+    <TypeScriptCompile Include="ClientApp\Services\Container.Service.ts" />
+    <TypeScriptCompile Include="ClientApp\Services\External.Service.ts" />
     <TypeScriptCompile Include="ClientApp\Models\AppModel.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.tsx" />
     <TypeScriptCompile Include="ClientApp\components\BookmarkApp.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark\BookmarkListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Bookmark\InsertBookmark.tsx" />
     <TypeScriptCompile Include="ClientApp\Models\ContainerModel.ts" />
+    <TypeScriptCompile Include="ClientApp\Shared\Validations\LoginValidations.ts" />
+    <TypeScriptCompile Include="ClientApp\Shared\Validations\SignupValidations.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

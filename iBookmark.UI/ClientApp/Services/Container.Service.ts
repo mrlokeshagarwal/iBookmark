@@ -1,7 +1,7 @@
 ﻿import { ContainerObject } from "../Models/ContainerModel";
 
 
-export class ContainerLogic {
+export class ContainerService {
     baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('data-APIUrl')!;
     GetContainers = (userId: number) => {
         return fetch(this.baseUrl + "containers/" + userId).

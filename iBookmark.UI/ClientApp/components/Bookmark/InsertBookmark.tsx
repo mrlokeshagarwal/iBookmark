@@ -2,7 +2,7 @@
 import 'jquery';
 import 'isomorphic-fetch';
 import { InsertBookmarkProps, InsertBookmarkState, BookMarkObject } from '../../Models/BookmarkModel';
-import { GetMetaData } from '../../JS/ExternalModules';
+import { GetMetaData } from '../../Services/External.Service';
 
 export class InsertBookmark extends React.Component<InsertBookmarkProps, InsertBookmarkState> {
     constructor() {

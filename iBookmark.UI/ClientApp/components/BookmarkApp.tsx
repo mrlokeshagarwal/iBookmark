@@ -6,9 +6,9 @@ import { BookMarkList } from './Bookmark/BookmarkListing';
 import { InsertContainer } from './Container/InsertContainer';
 import { ContainerList } from './Container/ContainerListing';
 import { ContainerObject } from '../Models/ContainerModel';
-import { ContainerLogic } from '../JS/ContainerLogic';
-import { BookmarkLogic } from '../JS/BookmarkLogic';
 import { AppProps } from '../Models/AppModel';
+import { BookmarkService } from '../Services/Bookmark.Service';
+import { ContainerService } from '../Services/Container.Service';
 
 let userId: number = 2;
 export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppProps>{
@@ -40,7 +40,7 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
         </div>
     }
     AddBookmark = (a: BookMarkObject) => {
-        let bookmark = new BookmarkLogic();
+        let bookmark = new BookmarkService();
         bookmark.InsertBookmark(a, userId).then(data => {
             a.bookmarkId = data;
             this.setState((prevState, props) => ({ bookmarks: prevState.bookmarks.concat(a) }));
@@ -48,7 +48,7 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
 
     };
     AddContainer = (con: ContainerObject) => {
-        let container = new ContainerLogic();
+        let container = new ContainerService();
         container.InsertContainer(con).
             then(data => {
                 con.containerId = data;
@@ -57,19 +57,21 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
 
     };
     SelectContainer = (containerId: number) => {
-        console.log(containerId);
+        this.state.containers.forEach(container => {
+            container.IsActive = container.containerId == containerId ? true : false;
+        });
         this.setState({
-            selectedContainerId: containerId
+            selectedContainerId: containerId, 
         }, () => this.LoadBookmark());
     };
     LoadBookmark = () => {
-        let bookmarkLogic = new BookmarkLogic();
+        let bookmarkLogic = new BookmarkService();
         bookmarkLogic.GetBookmarks(userId, this.state.selectedContainerId).then(data => {
             this.setState({ bookmarks: data });
         }).catch(err => console.log(err));
     }
     LoadContainer = () => {
-        let container = new ContainerLogic();
+        let container = new ContainerService();
         container.GetContainers(userId).then(
             data => this.setState({ containers: data })
         ).catch(err => console.log(err));

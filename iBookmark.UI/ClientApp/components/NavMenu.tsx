@@ -22,7 +22,7 @@ export class NavMenu extends React.Component<{}, {}> {
                                 <NavLink to={'/'} exact activeClassName='active'>
                                     <span className='glyphicon glyphicon-home'></span> Home
                             </NavLink>
-                            </li>                            
+                            </li>
                             <li>
                                 <NavLink to={'/BookmarkApp'} activeClassName='active'>
                                     <span className='glyphicon glyphicon-th-list'></span> Manage Bookmark
@@ -30,8 +30,18 @@ export class NavMenu extends React.Component<{}, {}> {
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li>
+                                <NavLink to={'/Signup'}>
+                                    <span className='glyphicon glyphicon-user'></span> SignIn
+                            </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/Login'}>
+                                    <span className='glyphicon glyphicon-log-in'></span> Login
+                            </NavLink>
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>

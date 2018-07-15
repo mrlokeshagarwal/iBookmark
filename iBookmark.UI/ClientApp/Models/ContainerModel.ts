@@ -6,7 +6,8 @@
 export interface ContainerObject {
     containerId: number,
     containerName: string,
-    isDefault: boolean
+    isDefault: boolean,
+    IsActive: boolean,
     onContainerSelected: (containerId: number) => void
 }
 
@@ -16,4 +17,8 @@ export interface InsertContainerState {
 
 export interface InsertContainerProps {
     onClickfunction: (conatiner: ContainerObject) => void
+}
+
+export interface ContainerItemState {
+    IsActive: boolean
 }

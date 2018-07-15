@@ -1,6 +1,6 @@
 ﻿import { BookMarkObject } from "../Models/BookmarkModel";
 
-export class BookmarkLogic {
+export class BookmarkService {
     baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('data-APIUrl')!;
     GetBookmarks = (userId: number, containerId: number) => {
         return fetch(this.baseUrl + "bookmarks/" + userId + "/" + containerId).

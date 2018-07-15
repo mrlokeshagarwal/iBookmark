@@ -30,7 +30,15 @@
     "typescript": "2.4.1",
     "url-loader": "0.5.9",
     "webpack": "2.5.1",
-    "webpack-hot-middleware": "2.18.2"
+    "webpack-hot-middleware": "2.18.2",
+    "react-redux": "5.0.7",
+    "lodash": "4.17.10",
+    "@types/react-redux": "6.0.4",
+    "classnames": "2.2.6",
+    "@types/classnames": "2.2.4",
+    "@types/lodash": "4.14.112",
+    "validator": "10.4.0",
+    "@types/validator": "9.4.1"
   },
   "scripts": {
     "build:dev": "webpack --display-error-details --watch"
