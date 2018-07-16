@@ -33,13 +33,33 @@ namespace iBookmark.API.Controllers
             _jwtFactory = jwtFactory;
             _jwtOptions = jwtOptions.Value;
         }
-        public async Task<int> SignupAsync(UserModel user)
+
+        /// <summary>
+        /// Creates new user profile into iBookmark
+        /// </summary>
+        /// <param name="user">FirstName, LastName, UserName, Password, IsActive</param>
+        /// <returns></returns>
+        [HttpPost("signup")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> SignupAsync([FromBody]UserModel user)
         {
             user.Password = _encryptorDecryptor.Encrypt(user.Password);
-            return await _userRepository.InsertUpdateUserAsync(user);
+            var result = await _userRepository.InsertUpdateUserAsync(user);
+            if (result > 0)
+                return new ObjectResult(result);
+            else
+                return BadRequest("There is some issue while creating profile. Please try again later");
         }
 
+        /// <summary>
+        /// Validates user credentials and provides authorization token
+        /// </summary>
+        /// <param name="login">Username, Password</param>
+        /// <returns></returns>
         [HttpPost("login")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Login([FromBody]LoginModel login)
         {
             var identity = await GetClaimsIdentity(login);
@@ -59,6 +79,8 @@ namespace iBookmark.API.Controllers
                 return await Task.FromResult<ClaimsIdentity>(null);
 
             // get the user to verifty
+
+            login.Password = _encryptorDecryptor.Encrypt(login.Password);
             var user = await _userRepository.ValidateUserAsync(login);
 
             // check the credentials

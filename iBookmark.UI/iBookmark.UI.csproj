@@ -33,6 +33,7 @@
     <None Remove="ClientApp\Models\BookmarkModel.ts" />
     <None Remove="ClientApp\Models\GeneralModel.ts" />
     <None Remove="ClientApp\Models\LoginModel.ts" />
+    <None Remove="ClientApp\Services\Auth.Service.ts" />
     <None Remove="ClientApp\Services\Bookmark.Service.ts" />
     <None Remove="ClientApp\Services\Container.Service.ts" />
     <None Remove="ClientApp\Services\External.Service.ts" />
@@ -55,6 +56,7 @@
     <TypeScriptCompile Include="ClientApp\Models\BookmarkModel.ts" />
     <TypeScriptCompile Include="ClientApp\Models\GeneralModel.ts" />
     <TypeScriptCompile Include="ClientApp\Models\LoginModel.ts" />
+    <TypeScriptCompile Include="ClientApp\Services\Auth.Service.ts" />
     <TypeScriptCompile Include="ClientApp\Services\Bookmark.Service.ts" />
     <TypeScriptCompile Include="ClientApp\Services\Container.Service.ts" />
     <TypeScriptCompile Include="ClientApp\Services\External.Service.ts" />

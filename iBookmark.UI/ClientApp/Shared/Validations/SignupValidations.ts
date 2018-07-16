@@ -3,7 +3,7 @@
 import * as validator from 'validator';
 
 export const ValidateInput = (data: SignupState) => {
-    let validations: SignupValidations = { Errors: { Username: '', Password: '', ConfirmPassword: '' }, IsValid: true };
+    let validations: SignupValidations = { Errors: { Username: '', Password: '', ConfirmPassword: '', FirstName:'', LastName: '' }, IsValid: true };
     if (validator.isEmpty(data.Username)) {
         validations.Errors.Username = "This field is required";
         validations.IsValid = false;
@@ -18,6 +18,14 @@ export const ValidateInput = (data: SignupState) => {
     }
     if (!validator.equals(data.Password, data.ConfirmPassword)) {
         validations.Errors.ConfirmPassword = "Password and confirm password does not match";
+        validations.IsValid = false;
+    }
+    if (validator.isEmpty(data.FirstName)) {
+        validations.Errors.FirstName = "This field is required";
+        validations.IsValid = false;
+    }
+    if (validator.isEmpty(data.LastName)) {
+        validations.Errors.LastName = "This field is required";
         validations.IsValid = false;
     }
     return (validations);

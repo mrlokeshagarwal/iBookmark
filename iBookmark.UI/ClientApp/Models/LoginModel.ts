@@ -2,7 +2,8 @@
     Username: string,
     Password: string,
     IsLoading: boolean,
-    Errors? : LoginErrors
+    Errors?: LoginErrors,
+    Redirect: boolean
 }
 
 export interface LoginErrors {
@@ -18,16 +19,31 @@ export interface LoginValidations {
 export interface SignupState {
     Username: string,
     Password: string,
+    FirstName: string,
+    LastName: string,
     ConfirmPassword: string
     IsLoading: boolean,
-    Errors?: SignupErrors   
+    Errors?: SignupErrors,
+    Redirect: boolean
 }
 export interface SignupErrors {
     Username: string,
     Password: string,
-    ConfirmPassword: string
+    ConfirmPassword: string,
+    FirstName: string,
+    LastName: string
 }
 export interface SignupValidations {
     Errors: SignupErrors,
     IsValid: boolean
+}
+
+export interface LoginResponse {
+    id: number,
+    auth_token: string,
+    expires_in: number
+}
+
+export interface NavState {
+    IsAuthenticated: boolean
 }

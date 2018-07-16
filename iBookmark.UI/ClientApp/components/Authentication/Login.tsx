@@ -1,8 +1,9 @@
 ﻿import * as React from 'react'
-import { LoginState } from '../../Models/LoginModel';
+import { LoginState, LoginResponse } from '../../Models/LoginModel';
 import { TextboxGroup } from '../Helpers/TextboxGroup';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, Redirect } from 'react-router';
 import { ValidateInput } from '../../Shared/Validations/LoginValidations';
+import { AuthService } from '../../Services/Auth.Service';
 
 export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
     constructor() {
@@ -13,7 +14,8 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
             },
             IsLoading: false,
             Password: '',
-            Username: ''
+            Username: '',
+            Redirect: false
         };
     }
 
@@ -38,10 +40,30 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
         event.preventDefault();
         if (this.IsValid()) {
             //ToDo: Need to send request to server
+            AuthService.Login(this.state).then(res => {                
+                return res.json();
+            }).then(data => {
+                let jsonData: LoginResponse = JSON.parse(data);
+                localStorage.setItem('access_token', jsonData.auth_token);
+                localStorage.setItem('id_token', jsonData.id.toString());
+                var t = new Date();
+                t.setSeconds(t.getSeconds() + jsonData.expires_in);
+                localStorage.setItem('expires_at', t.toString());
+                this.setState({
+                    Errors: {
+                        Username: '', Password: ''
+                    },
+                    IsLoading: true,
+                    Redirect: true
+                });
+            });
         }
     }
 
     render() {
+        if (this.state.Redirect === true) {
+            return <Redirect to='/BookmarkApp' />
+        }
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">

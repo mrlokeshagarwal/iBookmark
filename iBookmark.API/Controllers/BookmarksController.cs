@@ -7,7 +7,7 @@
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
 
-    //[Authorize(Policy = "AddBookmark")]
+    [Authorize(Policy = "AddBookmark")]
     [Route("Bookmarks")]
     public class BookmarksController : Controller
     {

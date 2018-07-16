@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthService } from '../Services/Auth.Service';
+import { NavState } from '../Models/LoginModel';
 
-export class NavMenu extends React.Component<{}, {}> {
+export class NavMenu extends React.Component<{}, NavState> {
+    constructor() {
+        super();
+        this.state = { IsAuthenticated: AuthService.IsAuthenticated() };
+    }
     public render() {
 
         return (
@@ -29,23 +35,37 @@ export class NavMenu extends React.Component<{}, {}> {
                             </NavLink>
                             </li>
                         </ul>
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <NavLink to={'/Signup'}>
-                                    <span className='glyphicon glyphicon-user'></span> SignIn
+                        {
+                            !this.state.IsAuthenticated &&
+                            <ul className="nav navbar-nav navbar-right">
+
+                                <li>
+                                    <NavLink to={'/Signup'}>
+                                        <span className='glyphicon glyphicon-user'></span> SignIn
                             </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/Login'}>
-                                    <span className='glyphicon glyphicon-log-in'></span> Login
+                                </li>
+                                <li>
+                                    <NavLink to={'/Login'}>
+                                        <span className='glyphicon glyphicon-log-in'></span> Login
                             </NavLink>
-                            </li>
+                                </li>
+                            </ul>
+                        }
+                        {
+                            this.state.IsAuthenticated &&
+                            <ul className="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="javascript:void(0)" onClick={this.Logout}>
+                                        <span className='glyphicon glyphicon-log-out'></span> Logout
+                            </a>
+                                </li>
+                            </ul>
+                        }
 
 
-                        </ul>
                     </div>
-                </div>
-            </nav>
+                </div >
+            </nav >
 
         )
 
@@ -88,5 +108,9 @@ export class NavMenu extends React.Component<{}, {}> {
         //        </div>
         //    </div>
         //</div>;
+    }
+    Logout = () => {
+        this.setState ({ IsAuthenticated: false });
+        AuthService.Logout();
     }
 }
