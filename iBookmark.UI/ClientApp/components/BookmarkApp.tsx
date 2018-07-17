@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, Redirect } from 'react-router';
 import { InsertBookmark } from './Bookmark/InsertBookmark';
 import { BookMarkObject} from '../Models/BookmarkModel';
 import { BookMarkList } from './Bookmark/BookmarkListing';
@@ -9,8 +9,8 @@ import { ContainerObject } from '../Models/ContainerModel';
 import { AppProps } from '../Models/AppModel';
 import { BookmarkService } from '../Services/Bookmark.Service';
 import { ContainerService } from '../Services/Container.Service';
+import { AuthService } from '../Services/Auth.Service';
 
-let userId: number = 2;
 export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppProps>{
     constructor() {
         super();
@@ -19,6 +19,10 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
         this.LoadBookmark();
     }
     render() {
+        if (!AuthService.IsAuthenticated())
+        {
+            return <Redirect to="/Login" />
+        }
         return <div>
             <div className="col-md-2 Container">
                 <div className="row">
@@ -41,6 +45,7 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
     }
     AddBookmark = (a: BookMarkObject) => {
         let bookmark = new BookmarkService();
+        let userId = AuthService.GetUserId();
         bookmark.InsertBookmark(a, userId).then(data => {
             a.bookmarkId = data;
             this.setState((prevState, props) => ({ bookmarks: prevState.bookmarks.concat(a) }));
@@ -49,7 +54,8 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
     };
     AddContainer = (con: ContainerObject) => {
         let container = new ContainerService();
-        container.InsertContainer(con).
+        let userId = AuthService.GetUserId();
+        container.InsertContainer(con, userId).
             then(data => {
                 con.containerId = data;
                 this.setState((prevState, props) => ({ containers: prevState.containers.concat(con) }));
@@ -66,12 +72,14 @@ export class BookmarkApp extends React.Component<RouteComponentProps<{}>, AppPro
     };
     LoadBookmark = () => {
         let bookmarkLogic = new BookmarkService();
+        let userId = AuthService.GetUserId();
         bookmarkLogic.GetBookmarks(userId, this.state.selectedContainerId).then(data => {
             this.setState({ bookmarks: data });
         }).catch(err => console.log(err));
     }
     LoadContainer = () => {
         let container = new ContainerService();
+        let userId = AuthService.GetUserId();
         container.GetContainers(userId).then(
             data => this.setState({ containers: data })
         ).catch(err => console.log(err));

@@ -1,7 +1,7 @@
 ﻿import * as React from 'react'
 import { LoginState, LoginResponse } from '../../Models/LoginModel';
 import { TextboxGroup } from '../Helpers/TextboxGroup';
-import { RouteComponentProps, Redirect } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { ValidateInput } from '../../Shared/Validations/LoginValidations';
 import { AuthService } from '../../Services/Auth.Service';
 
@@ -17,6 +17,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
             Username: '',
             Redirect: false
         };
+        AuthService.Logout();
     }
 
     OnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +45,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
                 return res.json();
             }).then(data => {
                 let jsonData: LoginResponse = JSON.parse(data);
-                localStorage.setItem('access_token', jsonData.auth_token);
-                localStorage.setItem('id_token', jsonData.id.toString());
-                var t = new Date();
-                t.setSeconds(t.getSeconds() + jsonData.expires_in);
-                localStorage.setItem('expires_at', t.toString());
+                AuthService.SetAuthenticationInformation(jsonData);
                 this.setState({
                     Errors: {
                         Username: '', Password: ''
@@ -56,14 +53,12 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
                     IsLoading: true,
                     Redirect: true
                 });
+                this.props.history.push('/BookmarkApp');
             });
         }
     }
 
-    render() {
-        if (this.state.Redirect === true) {
-            return <Redirect to='/BookmarkApp' />
-        }
+    render() {       
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">

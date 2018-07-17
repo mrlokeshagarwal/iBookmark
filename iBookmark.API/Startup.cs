@@ -1,6 +1,7 @@
 ﻿using iBookmar.Repositories.Repositories;
 using iBookmark.API.Auth;
 using iBookmark.API.Filters;
+using iBookmark.API.Middlewares;
 using iBookmark.API.Options;
 using iBookmark.Domain.AggregatesModel.BookmarkAggregate;
 using iBookmark.Helper.Database;
@@ -114,7 +115,7 @@ namespace iBookmark.API
                 ValidateIssuer = true,
                 ValidIssuer = JwtAppSettingsTokenOptions[nameof(JwtIssuerOptions.Issuer)],
 
-                ValidateAudience = true,
+                ValidateAudience = false,
                 ValidAudience = JwtAppSettingsTokenOptions[nameof(JwtIssuerOptions.Audience)],
 
                 ValidateIssuerSigningKey = true,
@@ -173,6 +174,7 @@ namespace iBookmark.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseErrorHandlingMiddleWare();
             app.UseAuthentication();                      
             app.UseSwagger();
             app.UseSwaggerUI(c =>

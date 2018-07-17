@@ -1,4 +1,4 @@
-﻿import { SignupState, LoginState } from "../Models/LoginModel";
+﻿import { SignupState, LoginState, LoginResponse } from "../Models/LoginModel";
 
 export class AuthService {
     static baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('data-APIUrl')!;
@@ -49,4 +49,20 @@ export class AuthService {
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
     };
+
+    static GetToken = () => {
+        return localStorage.getItem('access_token');
+    }
+
+    static GetUserId = () => {
+        return localStorage.getItem('id_token') == null ? 0 : parseInt(localStorage.getItem('id_token')!);
+    }
+
+    static SetAuthenticationInformation = (info: LoginResponse) => {
+        localStorage.setItem('access_token', info.auth_token);
+        localStorage.setItem('id_token', info.id.toString());
+        var t = new Date();
+        t.setSeconds(t.getSeconds() + info.expires_in);
+        localStorage.setItem('expires_at', t.toString());
+    }
 }

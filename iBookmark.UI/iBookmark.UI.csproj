@@ -23,6 +23,7 @@
   <ItemGroup>
     <None Remove="ClientApp\BookmarkModel.tsx" />
     <None Remove="ClientApp\components\Authentication\Login.tsx" />
+    <None Remove="ClientApp\components\Authentication\Logout.tsx" />
     <None Remove="ClientApp\components\Authentication\Signup.tsx" />
     <None Remove="ClientApp\components\BookmarkApp.tsx" />
     <None Remove="ClientApp\components\BookmarkListing.tsx" />
@@ -49,6 +50,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\Authentication\Login.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Authentication\Logout.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Authentication\Signup.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Container\ContainerListing.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Container\InsertContainer.tsx" />

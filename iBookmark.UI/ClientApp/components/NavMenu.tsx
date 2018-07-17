@@ -9,7 +9,6 @@ export class NavMenu extends React.Component<{}, NavState> {
         this.state = { IsAuthenticated: AuthService.IsAuthenticated() };
     }
     public render() {
-
         return (
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
@@ -29,14 +28,16 @@ export class NavMenu extends React.Component<{}, NavState> {
                                     <span className='glyphicon glyphicon-home'></span> Home
                             </NavLink>
                             </li>
-                            <li>
-                                <NavLink to={'/BookmarkApp'} activeClassName='active'>
-                                    <span className='glyphicon glyphicon-th-list'></span> Manage Bookmark
+                            {AuthService.IsAuthenticated() &&
+                                <li>
+                                    <NavLink to={'/BookmarkApp'} activeClassName='active'>
+                                        <span className='glyphicon glyphicon-th-list'></span> Manage Bookmark
                             </NavLink>
-                            </li>
+                                </li>
+                            }
                         </ul>
                         {
-                            !this.state.IsAuthenticated &&
+                            !AuthService.IsAuthenticated() &&
                             <ul className="nav navbar-nav navbar-right">
 
                                 <li>
@@ -52,12 +53,12 @@ export class NavMenu extends React.Component<{}, NavState> {
                             </ul>
                         }
                         {
-                            this.state.IsAuthenticated &&
+                            AuthService.IsAuthenticated() &&
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="javascript:void(0)" onClick={this.Logout}>
+                                    <NavLink to={'/Logout'}>
                                         <span className='glyphicon glyphicon-log-out'></span> Logout
-                            </a>
+                            </NavLink>
                                 </li>
                             </ul>
                         }
@@ -68,49 +69,5 @@ export class NavMenu extends React.Component<{}, NavState> {
             </nav >
 
         )
-
-
-        //return <div className='main-nav'>
-        //        <div className='navbar navbar-inverse'>
-        //        <div className='navbar-header'>
-        //            <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-        //                <span className='sr-only'>Toggle navigation</span>
-        //                <span className='icon-bar'></span>
-        //                <span className='icon-bar'></span>
-        //                <span className='icon-bar'></span>
-        //            </button>
-        //            <Link className='navbar-brand' to={ '/' }>iBookmark.UI</Link>
-        //        </div>
-        //        <div className='clearfix'></div>
-        //        <div className='navbar-collapse collapse'>
-        //            <ul className='nav navbar-nav'>
-        //                <li>
-        //                    <NavLink to={ '/' } exact activeClassName='active'>
-        //                        <span className='glyphicon glyphicon-home'></span> Home
-        //                    </NavLink>
-        //                </li>
-        //                <li>
-        //                    <NavLink to={ '/counter' } activeClassName='active'>
-        //                        <span className='glyphicon glyphicon-education'></span> Counter
-        //                    </NavLink>
-        //                </li>
-        //                <li>
-        //                    <NavLink to={ '/fetchdata' } activeClassName='active'>
-        //                        <span className='glyphicon glyphicon-th-list'></span> Fetch data
-        //                    </NavLink>
-        //                </li>
-        //                <li>
-        //                    <NavLink to={'/Bookmark'} activeClassName='active'>
-        //                        <span className='glyphicon glyphicon-th-list'></span> Manage Bookmark
-        //                    </NavLink>
-        //                </li>
-        //            </ul>
-        //        </div>
-        //    </div>
-        //</div>;
-    }
-    Logout = () => {
-        this.setState ({ IsAuthenticated: false });
-        AuthService.Logout();
     }
 }
