@@ -1,16 +1,16 @@
-﻿import { RouteComponentProps, Redirect } from "react-router";
+﻿import { RouteComponentProps } from "react-router";
 import { SignupState } from "../../Models/LoginModel";
 import * as React from "react";
 import { ValidateInput } from "../../Shared/Validations/SignupValidations";
 import { TextboxGroup } from "../Helpers/TextboxGroup";
 import { AuthService } from "../../Services/Auth.Service";
 
-export class Signup extends React.Component < RouteComponentProps < {} >, SignupState > {
+export class Signup extends React.Component<RouteComponentProps<{}>, SignupState> {
     constructor() {
         super();
         this.state = {
             Errors: {
-                Username: '', Password: '', ConfirmPassword: '', FirstName: '', LastName: ''
+                Username: '', Password: '', ConfirmPassword: '', FirstName: '', LastName: '', Form: ''
             },
             IsLoading: false,
             Password: '',
@@ -18,7 +18,7 @@ export class Signup extends React.Component < RouteComponentProps < {} >, Signup
             ConfirmPassword: '',
             FirstName: '',
             LastName: '',
-            Redirect:false
+            Redirect: false
         };
     }
 
@@ -48,26 +48,38 @@ export class Signup extends React.Component < RouteComponentProps < {} >, Signup
         event.preventDefault();
         if (this.IsValid()) {
             //ToDo: Need to send request to server
-            AuthService.Signup(this.state).then(res =>
-            {
-                this.setState({
-                    Errors: {
-                        Username: '', Password: '', ConfirmPassword: '', FirstName: '', LastName: ''
-                    },
-                    IsLoading: true,
-                    Redirect: true
+            AuthService.Signup(this.state).then(res => res.json())
+                .then(data => {
+                    if (data.errors != null) {
+                        throw Error(data.errors[0]);
+                    }
+                    else {
+                        this.setState({
+                            Errors: {
+                                Username: '', Password: '', ConfirmPassword: '', FirstName: '', LastName: '', Form: ''
+                            },
+                            IsLoading: true,
+                            Redirect: true
+                        });
+                        this.props.history.push('/Login');
+                    }
+                }).catch(error => {
+                    console.error(error.message);
+                    this.setState({
+                        Errors: { Form: error.message, Username: '', Password: '', ConfirmPassword: '', FirstName: '', LastName: '' }
+                    })
                 });
-            });
         }
     }
 
     render() {
-        if (this.state.Redirect === true) {
-            return <Redirect to='/Login' />
-        }
+        //if (this.state.Redirect === true) {
+        //    return <Redirect to='/Login' />
+        //}
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
+                    {this.state.Errors!.Form.length > 0 && <div className="alert alert-danger">{this.state.Errors!.Form}</div>}
                     <form onSubmit={this.OnSubmit}>
                         <h1>Sign up</h1>
                         <TextboxGroup label="First Name" name="FirstName" error={this.state.Errors!.FirstName} onChange={this.OnChange} value={this.state.FirstName} />

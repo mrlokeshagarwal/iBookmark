@@ -10,7 +10,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
         super();
         this.state = {
             Errors: {
-                Username: '', Password: ''
+                Username: '', Password: '', Form: ''
             },
             IsLoading: false,
             Password: '',
@@ -26,14 +26,14 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
             this.setState({ Username: event.target.value });
         else
             this.setState({ Password: event.target.value });
-        
+
     }
 
     IsValid = () => {
         const { Errors, IsValid } = ValidateInput(this.state);
         console.log(IsValid);
         if (!IsValid)
-            this.setState({ Errors : Errors });
+            this.setState({ Errors: Errors });
         return IsValid;
     }
 
@@ -41,27 +41,40 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState>{
         event.preventDefault();
         if (this.IsValid()) {
             //ToDo: Need to send request to server
-            AuthService.Login(this.state).then(res => {                
+            AuthService.Login(this.state).then(res => {
                 return res.json();
             }).then(data => {
-                let jsonData: LoginResponse = JSON.parse(data);
-                AuthService.SetAuthenticationInformation(jsonData);
+                if (data.errors != null) {
+                    throw Error(data.errors[0]);
+                }
+                else {
+                    let jsonData: LoginResponse = JSON.parse(data);
+                    AuthService.SetAuthenticationInformation(jsonData);
+                    this.setState({
+                        Errors: {
+                            Username: '', Password: '', Form: ''
+                        },
+                        IsLoading: true,
+                        Redirect: true
+                    });
+                    this.props.history.push('/BookmarkApp');
+                }
+
+            }).catch(error => {
+                console.error(error.message);
                 this.setState({
-                    Errors: {
-                        Username: '', Password: ''
-                    },
-                    IsLoading: true,
-                    Redirect: true
-                });
-                this.props.history.push('/BookmarkApp');
+                    Errors: { Form: error.message, Username: '', Password: '' }
+                })
             });
         }
     }
 
-    render() {       
+    render() {
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
+                    {this.state.Errors!.Form.length > 0 && <div className="alert alert-danger">{this.state.Errors!.Form}</div>}
+
                     <form onSubmit={this.OnSubmit}>
                         <h1>Login</h1>
                         <TextboxGroup label="Username/ Email" name="Username" error={this.state.Errors!.Username} onChange={this.OnChange} value={this.state.Username} />

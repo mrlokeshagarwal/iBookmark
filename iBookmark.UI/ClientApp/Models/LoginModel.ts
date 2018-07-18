@@ -8,7 +8,8 @@
 
 export interface LoginErrors {
     Username: string,
-    Password: string
+    Password: string,
+    Form: string
 }
 
 export interface LoginValidations {
@@ -31,7 +32,8 @@ export interface SignupErrors {
     Password: string,
     ConfirmPassword: string,
     FirstName: string,
-    LastName: string
+    LastName: string,
+    Form: string
 }
 export interface SignupValidations {
     Errors: SignupErrors,

@@ -3,7 +3,7 @@
 import * as validator from 'validator';
 
 export const ValidateInput = (data: SignupState) => {
-    let validations: SignupValidations = { Errors: { Username: '', Password: '', ConfirmPassword: '', FirstName:'', LastName: '' }, IsValid: true };
+    let validations: SignupValidations = { Errors: { Username: '', Password: '', ConfirmPassword: '', FirstName:'', LastName: '', Form: '' }, IsValid: true };
     if (validator.isEmpty(data.Username)) {
         validations.Errors.Username = "This field is required";
         validations.IsValid = false;
